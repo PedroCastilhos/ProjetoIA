@@ -66,6 +66,10 @@ def verifica_estado_semaforo(img, semaforo):
     total_amarelo = cv2.countNonZero(mask_amarelo)
     total_verde = cv2.countNonZero(mask_verde)
 
+    # Verifica se nenhuma cor teve intensidade significativa
+    if max(total_vermelho, total_amarelo, total_verde) < 50:
+        return "DESCONHECIDO"
+
     # Determina qual cor está com mais intensidade
     max_cor = max(total_vermelho, total_amarelo, total_verde)
 
